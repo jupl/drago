@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "maxNodeModuleJsDepth": 1,
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "plugins": [
+      {"name": "tslint-language-service"}
+    ],
+    "strict": true,
+    "strictFunctionTypes": false,
+    "target": "es2017"
+  }
+}
