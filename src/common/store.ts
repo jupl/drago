@@ -9,9 +9,6 @@ import {
   composeWithDevTools,
 } from 'redux-devtools-extension/logOnlyInProduction'
 
-// Check if Redux DevTools is available for redux-logger
-const devToolsAvailable = window.__REDUX_DEVTOOLS_EXTENSION__ !== undefined
-
 /** Store constructor options */
 interface Options<S> extends EnhancerOptions {
   /** Redux reducer */
@@ -39,7 +36,9 @@ export function createStore<S>({
   let middlewares = baseMiddlewares
 
   // Add redux-logger middleware in development when there's no Redux DevTools
-  if(process.env.NODE_ENV !== 'production' && !devToolsAvailable) {
+  if(process.env.NODE_ENV !== 'production'
+     && process.env.IS_CLIENT === 'true'
+     && window.__REDUX_DEVTOOLS_EXTENSION__ === undefined) {
     const logger = require('redux-logger')
     middlewares = [...middlewares, logger.default]
   }

@@ -4,8 +4,14 @@ import {createOptionsFactory} from '../graphql'
 // Plugin
 export {graphqlHapi as plugin} from 'apollo-server-hapi'
 
+const createOptions = createOptionsFactory({})
+
+interface Options extends HapiPluginOptions {
+  graphqlOptions: typeof createOptions
+}
+
 /** Options for plugin */
-export const options: HapiPluginOptions = {
+export const options: Options = {
   path: '/graphql',
-  graphqlOptions: createOptionsFactory({}),
+  graphqlOptions: createOptions,
 }

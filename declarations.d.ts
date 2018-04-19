@@ -2,6 +2,8 @@
 
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION__?: Function
+  __APOLLO_STATE__: any // tslint:disable-line:no-any
+  __REDUX_STATE__: any // tslint:disable-line:no-any
 }
 
 // TODO Remove the following below once TS supports async iterator w/o esnext

@@ -1,11 +1,11 @@
 import {InMemoryCache} from 'apollo-cache-inmemory'
 import {ApolloClient} from 'apollo-client'
 import {createHttpLink} from 'apollo-link-http'
-import 'normalize.css'
 import * as React from 'react'
-import {render as renderToDOM} from 'react-dom'
+import {hydrate as renderToDOM} from 'react-dom'
 import {AppRoot} from '../app/components/root'
 import {createReducer} from '../app/reducer'
+import * as Actions from '../common/actions'
 import {Container} from '../common/components/container'
 import {createStore} from '../common/store'
 
@@ -14,18 +14,27 @@ const container = document.getElementById('container')!
 
 // Set up Apollo and Redux
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
   link: createHttpLink({uri: '/graphql'}),
 })
-const store = createStore({reducer: createReducer()})
+const store = createStore({
+  reducer: createReducer(),
+  initialState: window.__REDUX_STATE__,
+})
+delete window.__APOLLO_STATE__ // tslint:disable-line:no-object-mutation
+delete window.__REDUX_STATE__ // tslint:disable-line:no-object-mutation
 
 // Render application. Also register to rerender if hot loading is available.
 if(module.hot !== undefined) {
   module.hot.accept('../app/components/root', render)
   module.hot.accept('../app/reducer', updateReducer)
+  module.hot.accept('../common/actions', () => true)
   module.hot.accept('../common/components/container', render)
 }
 render()
+
+// After initial render, turn off SSR
+store.dispatch(Actions.enableBrowser())
 
 /**
  * Render application to the container. If we are not in production and an

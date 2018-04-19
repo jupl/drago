@@ -1,5 +1,11 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, {injectGlobal} from 'styled-components'
+import {normalize} from 'styled-normalize'
+
+// tslint:disable-next-line:no-unused-expression
+injectGlobal`
+  ${normalize}
+`
 
 // Container component
 const Container = styled.div`

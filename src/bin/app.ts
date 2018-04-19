@@ -1,5 +1,6 @@
 import {Server} from 'hapi'
 import * as graphql from '../app/plugin/graphql'
+import * as handler from '../app/plugin/handler'
 
 const DEFAULT_PORT = 3000
 const envPort = process.env.PORT
@@ -12,7 +13,7 @@ if(isNaN(port)) {
 (async() => { // tslint:disable-line:no-floating-promises
   // Declare plugins for server to use
   // TODO require -> import
-  let plugins = [graphql]
+  let plugins = [graphql, handler]
   if(process.env.NODE_ENV !== 'development') {
     plugins = [
       ...plugins,
