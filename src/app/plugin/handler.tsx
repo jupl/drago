@@ -22,7 +22,7 @@ export const plugin: Plugin<{}> = {
       path: '/{path*}',
       async handler(request) {
         const client = new ApolloClient({
-          // @ts-ignore
+          // @ts-ignore: False mismatched type error
           link: new SchemaLink(options.graphqlOptions(request)),
           cache: new InMemoryCache(),
           ssrMode: true,
