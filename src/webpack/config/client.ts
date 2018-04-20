@@ -1,7 +1,7 @@
 import {addRules, createConfiguration} from 'wcb'
 
 /** Webpack configuration */
-export const configuration = addRules(createConfiguration({
+export let configuration = addRules(createConfiguration({
   assets: process.env.STORYBOOK !== 'true' ? 'src/assets' : undefined,
   common: true,
   destination: 'dist/assets',

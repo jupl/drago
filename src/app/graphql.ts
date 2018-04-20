@@ -1,5 +1,5 @@
 import {GraphQLOptions} from 'apollo-server-core'
-import * as merge from 'deepmerge'
+import merge from 'deepmerge'
 import {IResolvers, makeExecutableSchema} from 'graphql-tools'
 import {Request} from 'hapi'
 import * as CommonGQL from '../common/graphql'

@@ -12,11 +12,6 @@
       "<rootDir>/common/store.ts",
       "<rootDir>/jest/"
     ],
-    "globals": {
-      "ts-jest": {
-        "useBabelrc": true
-      }
-    },
     "moduleFileExtensions": [
       "js",
       "json",
@@ -31,9 +26,9 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.tsx?$",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.[jt]sx?$",
     "transform": {
-      "\\.tsx?": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "\\.[jt]sx?": "babel-jest"
     }
   },
   "scripts": {
@@ -46,16 +41,18 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "server": "npm run server:hot",
-    "server:dev": "cross-env NODE_ENV=development node-dev -r ts-node/register/type-check src/bin/app.ts",
+    "server:dev": "cross-env NODE_ENV=development node-dev -r ./register src/bin/app.ts",
     "server:hot": "cross-env HOT_MODULES=true npm run server:dev",
     "server:story": "cross-env NODE_ENV=development STORYBOOK=true start-storybook -p 9001",
-    "server:prod": "cross-env NODE_ENV=production ts-node src/bin/app",
+    "server:prod": "cross-env NODE_ENV=production node -r ./register src/bin/app",
     "build": "npm run clean && webpack",
     "build:dev": "cross-env NODE_ENV=development npm run build",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "build:story": "cross-env NODE_ENV=production STORYBOOK=true build-storybook -o $PWD/story"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.44",
+    "@types/jquery": "^3.3.1",
     "apollo-cache-inmemory": "^1.0.0",
     "apollo-client": "^2.0.1",
     "apollo-link-schema": "^1.1.0",
@@ -68,6 +65,7 @@
     "graphql-tools": "^2.24.0",
     "hapi": "^17.3.1",
     "inert": "^5.1.0",
+    "jquery": "^3.3.1",
     "react": "^16.3.2",
     "react-apollo": "^2.1.3",
     "react-dom": "^16.3.2",
@@ -81,6 +79,13 @@
     "styled-normalize": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/plugin-transform-react-inline-elements": "^7.0.0-beta.44",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-react": "^7.0.0-beta.44",
+    "@babel/preset-typescript": "^7.0.0-beta.44",
+    "@babel/register": "^7.0.0-beta.44",
     "@jupl/tslint-config": "^0.3.1",
     "@storybook/addon-actions": "^3.4.2",
     "@storybook/react": "^3.4.2",
@@ -104,12 +109,10 @@
     "@types/webpack": "^4.1.3",
     "@types/webpack-env": "^1.13.6",
     "apollo-link-http": "^1.0.0",
-    "babel-core": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^22.4.3",
     "babel-plugin-styled-components": "^1.5.1",
-    "babel-plugin-transform-react-inline-elements": "^6.22.0",
-    "babel-plugin-transform-runtime": "^6.22.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "cross-env": "^5.1.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -126,15 +129,14 @@
     "react-test-renderer": "^16.3.2",
     "redux-logger": "^3.0.6",
     "trash-cli": "^1.3.0",
-    "ts-jest": "^22.4.3",
-    "ts-node": "^5.0.1",
+    "ts-node": "^6.0.0",
     "tslint": "^5.9.1",
     "tslint-eslint-rules": "^5.1.0",
     "tslint-immutable": "^4.5.4",
     "tslint-language-service": "^0.9.9",
     "tslint-react": "^3.5.1",
     "typescript": "^2.8.1",
-    "wcb": "^0.6.5",
+    "wcb": "^0.7.0",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.14"
   }

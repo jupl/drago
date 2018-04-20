@@ -1,7 +1,7 @@
 import {InMemoryCache} from 'apollo-cache-inmemory'
 import {ApolloClient} from 'apollo-client'
 import {createHttpLink} from 'apollo-link-http'
-import * as React from 'react'
+import React from 'react'
 import {hydrate as renderToDOM} from 'react-dom'
 import {AppRoot} from '../app/components/root'
 import {createReducer} from '../app/reducer'

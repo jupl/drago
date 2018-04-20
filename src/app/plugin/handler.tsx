@@ -2,9 +2,9 @@ import {InMemoryCache} from 'apollo-cache-inmemory'
 import {ApolloClient} from 'apollo-client'
 import {SchemaLink} from 'apollo-link-schema'
 import {Plugin} from 'hapi'
-import * as React from 'react'
+import React from 'react'
 import {renderToStringWithData} from 'react-apollo'
-import * as ReactDOM from 'react-dom/server'
+import {renderToStaticMarkup} from 'react-dom/server'
 import {ServerStyleSheet} from 'styled-components'
 import {createReducer} from '../../app/reducer'
 import {Container} from '../../common/components/container'
@@ -34,7 +34,7 @@ export const plugin: Plugin<{}> = {
             <AppRoot />
           </Container>
         )))
-        return ReactDOM.renderToStaticMarkup((
+        return renderToStaticMarkup((
           <AppPage body={body} client={client} sheet={sheet} store={store} />
         ))
       },

@@ -1,4 +1,4 @@
-import * as webpack from 'webpack'
+import webpack from 'webpack'
 import {configuration} from '../config/client'
 
 // Plugin

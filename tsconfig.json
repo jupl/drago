@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "maxNodeModuleJsDepth": 1,
     "moduleResolution": "node",
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -12,8 +14,9 @@
     "plugins": [
       {"name": "tslint-language-service"}
     ],
+    "pretty": true,
     "strict": true,
     "strictFunctionTypes": false,
-    "target": "es2017"
+    "target": "esnext"
   }
 }

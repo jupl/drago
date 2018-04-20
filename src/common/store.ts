@@ -31,7 +31,7 @@ export function createStore<S>({
   reducer,
   initialState,
   middlewares: baseMiddlewares = [],
-  ...config,
+  ...config
 }: Options<S>) {
   let middlewares = baseMiddlewares
 

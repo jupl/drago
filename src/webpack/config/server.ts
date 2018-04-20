@@ -7,6 +7,7 @@ export const configuration = addToEntries(addPlugins(createConfiguration({
   log: message => console.log(`[server] ${message}`),
   source: 'src/bin',
   target: 'node',
+  useBabel: true,
 }), [
   new BannerPlugin({
     banner: '#!/usr/bin/env node',

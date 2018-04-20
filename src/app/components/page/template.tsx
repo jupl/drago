@@ -1,7 +1,7 @@
 import {ApolloClient} from 'apollo-client'
-import * as React from 'react'
+import React from 'react'
 import {Store} from 'redux'
-import * as serialize from 'serialize-javascript'
+import serialize from 'serialize-javascript'
 import {ServerStyleSheet} from 'styled-components'
 
 /** Component properties */
@@ -35,7 +35,7 @@ export function AppPage({body, client, sheet, store}: Props) {
       <body>
         <div id="container" dangerouslySetInnerHTML={{__html: body}} />
         <script dangerouslySetInnerHTML={{__html: scriptBody}} />
-        <script src="app.js" />
+        <script src="/assets/app.js" />
       </body>
     </html>
   )

@@ -9,10 +9,10 @@ export const plugin: Plugin<{}> = {
     await server.register(inert)
     server.route({
       method: 'GET',
-      path: '/{p*}',
+      path: '/assets/{param*}',
       handler: {
         directory: {
-          path: resolve('assets'),
+          path: resolve('dist/assets'),
         },
       },
     })
