@@ -1,27 +1,18 @@
-import {ApolloClient} from 'apollo-client'
 import React from 'react'
-import {Store} from 'redux'
 import serialize from 'serialize-javascript'
-import {ServerStyleSheet} from 'styled-components'
-
-/** Component properties */
-export interface Props {
-  body: string
-  client: ApolloClient<{}>
-  sheet: ServerStyleSheet
-  store: Store<{}>
-}
+import {Props} from '../../../common/plugin/ssr'
+export {Props} from '../../../common/plugin/ssr'
 
 /**
  * Render top level page
  * @param props Component properties
  * @return Application page component
  */
-export function AppPage({body, client, sheet, store}: Props) {
+export function AppPage({body, states, styles}: Props) {
   const scriptBody = [
     '',
-    `window.__APOLLO_STATE__=${serialize(client.extract())}`,
-    `window.__REDUX_STATE__=${serialize(store.getState())}`,
+    `window.__APOLLO_STATE__=(${serialize(states.apollo, {isJSON: true})})`,
+    `window.__REDUX_STATE__=(${serialize(states.redux, {isJSON: true})})`,
     '',
   ].join(';')
   return (
@@ -30,7 +21,7 @@ export function AppPage({body, client, sheet, store}: Props) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="initial-scale=1.0" />
         <title>App</title>
-        {sheet.getStyleElement()}
+        {styles}
       </head>
       <body>
         <div id="container" dangerouslySetInnerHTML={{__html: body}} />

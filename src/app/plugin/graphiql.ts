@@ -1,4 +1,5 @@
 import {HapiGraphiQLPluginOptions} from 'apollo-server-hapi'
+import * as gql from './graphql'
 
 // Plugin
 export {graphiqlHapi as plugin} from 'apollo-server-hapi'
@@ -7,6 +8,6 @@ export {graphiqlHapi as plugin} from 'apollo-server-hapi'
 export const options: HapiGraphiQLPluginOptions = {
   path: '/graphiql',
   graphiqlOptions: {
-    endpointURL: '/graphql',
+    endpointURL: gql.options.path,
   },
 }

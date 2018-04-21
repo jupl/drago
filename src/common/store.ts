@@ -39,8 +39,8 @@ export function createStore<S>({
   if(process.env.NODE_ENV !== 'production'
      && process.env.IS_CLIENT === 'true'
      && window.__REDUX_DEVTOOLS_EXTENSION__ === undefined) {
-    const logger = require('redux-logger')
-    middlewares = [...middlewares, logger.default]
+    const {default: logger} = require('redux-logger')
+    middlewares = [...middlewares, logger]
   }
 
   // Create store instance
